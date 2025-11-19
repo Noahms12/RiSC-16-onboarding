@@ -1,0 +1,13 @@
+// Add 5 + 3, store in memory
+//---------------------------------------
+// ADDI R1, R0, 5   (R1 = R0 + 5)
+1105   // Op=001, rA=1, rB=0, imm=5
+// ADDI R2, R0, 3   (R2 = R0 + 3)
+1183   // Op=001, rA=2, rB=0, imm=3
+// ADD  R3, R1, R2   (R3 = R1 + R2)
+04C3   // Op=000, rA=3, rB=1, rC=2
+// SW   R3, R0, 0   (Mem[R0+0] = R3)
+B000   // Op=101, rA=3, rB=0, imm=0
+// HALT (Infinite loop)
+C000   // BEQ R0, R0, -1 (Branch to self)
+       // Op=110, rA=0, rB=0, imm=-1 (FFFFFFF)
