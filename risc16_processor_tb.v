@@ -26,6 +26,11 @@ module risc16_processor_tb;
         rst_n = 0; // Assert active-low reset
         #20;       // Hold reset for 20ns (2 clock cycles)
         rst_n = 1; // De-assert reset
+
+        initial begin
+            $dumpfile("cpu_waves.vcd"); // Create a waveform file
+            $dumpvars(0, risc16_processor_tb); // Dump all variables in the testbench
+        end
         
         // 2. Let the processor run for some time
         #200;      // Run for 200ns (20 clock cycles)
