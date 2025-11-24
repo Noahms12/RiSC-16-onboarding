@@ -43,22 +43,19 @@ module risc16_processor_tb;
     // We need to access wires *inside* the 'uut'.
     // This is allowed in a testbench.
     initial begin
-        // Wait for reset to finish
-        @(negedge rst_n);
-        @(posedge rst_n);
-        
-        // At every positive clock edge, print these values
+        // Start monitoring immediately. 
+        // It will automatically print whenever a signal changes.
         $monitor(
             "Time=%0t | PC= %h | Instr= %h | rA=%d rB=%d rC=%d | reg_out1= %h | reg_out2= %h | ALU_Out= %h | Mem_Out= %h | WE_rf= %b",
             $time,
-            uut.pc_out,         // The current program counter
-            uut.instruction,    // The instruction being executed
-            uut.rA, uut.rB, uut.rC, // Decoded register addresses
-            uut.reg_out1,       // Value from Reg[rB]
-            uut.reg_out2,       // Value from Reg[rC or rA]
-            uut.alu_out,        // Result from ALU
-            uut.mem_out,        // Data from Data Memory
-            uut.WE_rf           // Write-Enable for Register File
+            uut.pc_out,         
+            uut.instruction,    
+            uut.rA, uut.rB, uut.rC, 
+            uut.reg_out1,       
+            uut.reg_out2,       
+            uut.alu_out,        
+            uut.mem_out,        
+            uut.WE_rf           
         );
     end
 
