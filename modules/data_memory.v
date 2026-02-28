@@ -1,5 +1,3 @@
-
-
 module data_memory (
     input wire clk,
     input wire WE_dmem,
