@@ -8,9 +8,10 @@ module pc (
 );
 
 reg [15:0] pc_reg; // Internal Register to hold state of pc
-wire [15:0] se_imm; // Sign extended immediate value
-
 assign nxt_instr = pc_reg; // Assigns output to be linked to pc_reg
+
+
+wire [15:0] se_imm; // Sign extended immediate value
 assign se_imm = {{9{imm[6]}}, imm[6:0]}; // Sign extends the least significant 7 bits from immediate value to 16 digits
 
 always @(posedge clk or negedge rst_n) 
