@@ -2,7 +2,7 @@ module alu (
     input MUX_alu1, MUX_alu2, // Controlled by Control module. 0-src_reg, 1-alternate input
     input [1:0] FUNC_alu, // Controlled by Control module. 00-ADD, 01-NAND, 10-PASS1, 11-EQL
     input [15:0] src1_reg, src2_reg, // The two inputs from the register file
-    input [9:0] imm, // 10 bits from immediate. Only 7 used for the sign-extend-7 value
+    input [9:0] imm, // 10 bits from immediate. Only 7 used for the sign-extend-7 value. All 10 used for left-shift-imm value.
     output reg EQ, // EQ! bit output for BEQ instruction
     output reg [15:0] alu_out // Function output
 );
@@ -41,7 +41,6 @@ begin
         default: // Default case
         begin
             alu_out = 16'b0;
-            EQ = 1'b0;
         end
     endcase
 end
