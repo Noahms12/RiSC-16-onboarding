@@ -1,4 +1,3 @@
-
 module register_file (
     input wire clk,
     input wire [1:0] MUX_tgt,
@@ -43,12 +42,12 @@ module register_file (
     // --- WRITE LOGIC (Synchronous) ---
     // The MUX_tgt signal selects which value gets written back to the register file.
     assign write_data = (MUX_tgt == 2'b00) ? mem_out :      // For LW
-                      (MUX_tgt == 2'b01) ? alu_out :      // For ADD, ADDI, NAND, LUI
-                      (MUX_tgt == 2'b10) ? pc + 16'h0001 : // For JALR
-                      16'hXXXX;
+                        (MUX_tgt == 2'b01) ? alu_out :      // For ADD, ADDI, NAND, LUI
+                        (MUX_tgt == 2'b10) ? pc + 16'h0001 : // For JALR
+                        16'hXXXX;
 
     always @(posedge clk) begin
-        // A write only occurs if the write enable (WE_rf) is high and the destination is not R0.
+        // A write only occurs if the write enable (WE_rf) is high and the destination is not R0.w
         if (WE_rf && (dest_addr != 3'b000)) begin
             register_file[dest_addr] <= write_data;
         end
