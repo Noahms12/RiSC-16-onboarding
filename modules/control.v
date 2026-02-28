@@ -18,7 +18,7 @@ parameter JALR = 3'b111;
 always @(*) begin
     case(op)
         ADD: begin 
-            FUNC_alu <= 2'b00;   // 00:ADD, 01:NAND, 10:PASS1, 11:EQL
+            FUNC_alu = 2'b00;   // 00:ADD, 01:NAND, 10:PASS1, 11:EQL
             MUX_alu1 = 0;       // 0:src1_reg, 1: lft_shft_imm
             MUX_alu2 = 0;       // 0:src2_reg, 1: sgn_ext_imm
             MUX_pc = 2'b00;     // 00:PC+1   01:PC+1+imm   10:alu_out
